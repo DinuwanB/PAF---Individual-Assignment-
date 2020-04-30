@@ -22,12 +22,15 @@ public class CustomerDataModel {
 		}
 	}
 
-	public List<Customer> getCustomers() {
-		List<Customer> cust = new ArrayList<Customer>();
-
+	public String getCustomers() {
+		
+		String output = "";
 		String sql = "SELECT * FROM patient";
 
 		try {
+			
+			output = "<table border=\"1\"><tr> <th> Patient ID</th>	<th> Patient ID</th><th> Patient ID</th>"
+					+ "<th> Patient ID</th><th> Patient ID</th></tr></table>";
 
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -44,13 +47,13 @@ public class CustomerDataModel {
 				cu1.setAddress(rs.getString(8));
 				cu1.setPassword(rs.getString(9));
 
-				cust.add(cu1);
+				//cust.add(cu1);
 
 			}
 		} catch (Exception e) {
 			System.out.println("catch 1 " + e);
 		}
-		return cust;
+		return null;
 	}
 
 	public Customer getCustomer(int id) {
