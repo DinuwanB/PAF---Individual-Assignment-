@@ -1,3 +1,6 @@
+ <%@ page import = "java.util.List"%>
+ <%@ page import = "com.pafProject.HealthManagement.Patient.CustomerDataModel "%>
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -5,7 +8,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm">
     	<h3>
@@ -63,11 +66,20 @@
       
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm">
+    <div id="divItemsGrid">
+ <% 
+ 
+ CustomerDataModel itemObj = new CustomerDataModel();
+ out.print(itemObj.getCustomers());
+ %>
+</div>
+    </div>
+    </div>
 </div>
 
-  <h2>Jersey RESTful Web Application!</h2>
-    <p><a href="customerapi/Customer">Jersey resource</a>
-    <p>Visit <a href="http://jersey.java.net">Project Jersey website</a>
-    for more information on Jersey!
+
+
 </body>
 </html>
