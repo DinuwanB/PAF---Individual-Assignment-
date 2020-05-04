@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("PatientApi")
-public class PatientApi extends HttpServlet {
+//@WebServlet("/PatientAPI")
+public class PatientAPI extends HttpServlet {
 	
 	CustomerDataModel item = new CustomerDataModel();
 	
@@ -17,8 +17,10 @@ public class PatientApi extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 		
 		String output = item.createUser(request.getParameter("nic"), 
 				request.getParameter("f_name"), request.getParameter("l_name"), request.getParameter("pat_mail"),
@@ -28,12 +30,12 @@ public class PatientApi extends HttpServlet {
 		response.getWriter().write(output);
 	}
 
-
+	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
-
+	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}

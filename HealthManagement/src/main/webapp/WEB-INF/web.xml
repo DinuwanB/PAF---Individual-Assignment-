@@ -13,16 +13,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Jersey Web Application</servlet-name>
-    <url-pattern>/PatientApi/*</url-pattern>
+    <url-pattern>/PatientAPI/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>PatientApi</display-name>
-    <servlet-name>PatientApi</servlet-name>
-    <servlet-class>com.pafProject.HealthManagement.Patient.PatientApi</servlet-class>
+    <display-name>PatientAPI</display-name>
+    <servlet-name>PatientAPI</servlet-name>
+    <servlet-class>com.pafProject.HealthManagement.Patient.PatientAPI</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PatientApi</servlet-name>
-    <url-pattern>/PatientApi</url-pattern>
+    <servlet-name>PatientAPI</servlet-name>
+    <url-pattern>/PatientAPI</url-pattern>
   </servlet-mapping>
 </web-app>
