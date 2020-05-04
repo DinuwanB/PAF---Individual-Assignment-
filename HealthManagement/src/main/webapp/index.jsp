@@ -16,7 +16,8 @@
   		<small class="text-muted">Admin Side</small>
 		</h3>
 		
-		<form>
+		<form id="pat_Form"  name="pat_Form">
+		
 		<div class="form-group col-md-6">
 			<div class="form-group ">
 				<label for="IdentyCardNumber">NIC</label>
@@ -61,11 +62,18 @@
     			<input type="password" class="form-control" id="c_pass" name="c_pass" placeholder="">
 			</div>
 			</div>
+			<br>
+			<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
+			<input id="hidPatSave" name="hidPatSave" type="hidden" value="" class="btn btn-primary">
+			
 		</div>	
 		</form>
       
     </div>
   </div>
+  <div id="alertSuccess" class="alert alert-success"></div>
+<div id="alertError" class="alert alert-danger"></div>
+  
   <div class="row">
     <div class="col-sm">
     <div id="divItemsGrid">
