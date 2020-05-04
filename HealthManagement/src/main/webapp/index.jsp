@@ -5,6 +5,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="view/bootstrap.min.css">
+<script src="component/jquery-3.5.0.min.js"></script>
+<script src="component/Patient.js"></script>
 </head>
 
 <body>
@@ -56,10 +58,6 @@
 			<div class="form-group col-md-6">
 				<label for="patpassword">Password</label>
     			<input type="password" class="form-control" id="pass" name="pass" placeholder="">
-			</div>
-			<div class="form-group col-md-6">
-				<label for="pat2password">Type Password Again</label>
-    			<input type="password" class="form-control" id="c_pass" name="c_pass" placeholder="">
 			</div>
 			</div>
 			<br>
