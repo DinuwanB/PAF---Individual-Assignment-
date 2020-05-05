@@ -1,6 +1,6 @@
 
 <%@ page import="java.util.List"%>
-<%@page import="com.pafProject.HealthManagement.Patient.CustomerDataModel"%>
+<%@ page import="com.pafProject.HealthManagement.Patient.CustomerDataModel" %>
 
 <!DOCTYPE html>
 <head>
