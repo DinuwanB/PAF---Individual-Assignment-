@@ -6,8 +6,6 @@ public class CustomerDataModel {
 
 	Connection con = null;
 
-	Customer cus1 = new Customer();
-
 	public CustomerDataModel() {
 		String url = "jdbc:mysql://localhost:3306/paf-project?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String username = "root";
@@ -24,12 +22,14 @@ public class CustomerDataModel {
 
 	public String createUser(String NIC, String FName, String LName, String Email, String PhoneNum, String BirthDay,
 			String Address, String Password) {
+
 		String output = "";
 
-		String sql = "INSERT INTO patient (`pat_id`,`pat_nic`,`FirstName`,`LastName`,`Email`,`PhoneNumber`,`Birthday`,`Address`,`Password`)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?)";
-
+		System.out.println("nic print  "+NIC);
 		try {
+			
+			String sql = "INSERT INTO patient (`pat_id`,`pat_nic`,`FirstName`,`LastName`,`Email`,`PhoneNumber`,`Birthday`,`Address`,`Password`)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?)";
 
 			PreparedStatement st = con.prepareStatement(sql);
 
@@ -47,10 +47,12 @@ public class CustomerDataModel {
 
 			String newPatient = getCustomers();
 			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\"}";
+			System.out.println("Insert Model success Output  ::" + output);
 
 		} catch (Exception e) {
 			output = "{\"status\":\"error\",\"data\": \" Error while patient Details Inserting.\"}";
-			System.out.println("catch 3 " + e);
+			System.out.println("Insert Model Error Output  ::" + output);
+			System.err.println("catch 3 Insert " + e.getMessage());
 
 		}
 		return output;
@@ -65,14 +67,14 @@ public class CustomerDataModel {
 
 		try {
 
-			output = "<table class=\"table table-striped table-dark\"> <thead> <tr> <th scope=\"col\">ID</th><th scope=\"col\"> Patient NIC</th><th scope=\"col\">First Name</th>"
+			output = "<table class=\"table table-striped table-dark\"> <thead> <tr> <th scope=\"col\"> Patient NIC</th><th scope=\"col\">First Name</th>"
 					+ "<th scope=\"col\">Last Name</th><th scope=\"col\">Email</th> <th scope=\"col\">Phone Number</th> <th scope=\"col\">Birthday</th> "
 					+ "<th scope=\"col\">Address</th> <th scope=\"col\">Password</th></tr> </thead>";
 
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 
-			System.out.println(rs);
+		
 
 			while (rs.next()) {
 
@@ -81,17 +83,16 @@ public class CustomerDataModel {
 				String patFName = rs.getString("FirstName");
 				String patLName = rs.getString("LastName");
 				String patEmail = rs.getString("Email");
-				String patPNum = rs.getString("PhoneNumber");
+				String patPNum = Integer.toString(rs.getInt("PhoneNumber"));
 				String patBday = rs.getString("Birthday");
 				String patAddr = rs.getString("Address");
 				String patPass = rs.getString("Password");
 
-				System.out.println(patID + "  " + patNIC + "  " + patFName + "  " + patLName + "  " + patEmail + "  "
-						+ patPNum + "  " + patBday + "  " + patAddr + "  " + patPass);
+				//System.out.println(patID + "  " + patNIC + "  " + patFName + "  " + patLName + "  " + patEmail + "  "
+					//	+ patPNum + "  " + patBday + "  " + patAddr + "  " + patPass);
 
 				output += "<tr>";
-				output += "<td>" + patID + "</td>";
-				output += "<td>" + patNIC + "</td>";
+				output += "<td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='"+patID+"'>" +patNIC +  "</td>";
 				output += "<td>" + patFName + "</td>";
 				output += "<td>" + patLName + "</td>";
 				output += "<td>" + patEmail + "</td>";
@@ -99,9 +100,8 @@ public class CustomerDataModel {
 				output += "<td>" + patBday + "</td>";
 				output += "<td>" + patAddr + "</td>";
 				output += "<td>" + patPass + "</td>";
-				output += "<td><input name='btnUpdate' type='button' value='Update'class='btnUpdate btn btn-secondary'></td>";
-				output += "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"
-						+ patID + "'></td>";
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>";
+				output += "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-patid='"+ patID + "'></td>";
 				output += "</tr>";
 			}
 			output += "</table>";
@@ -109,7 +109,7 @@ public class CustomerDataModel {
 		} catch (Exception e) {
 
 			output = "Error while reading the Patients Details.";
-			System.out.println("catch 1 " + e);
+			System.err.println("catch 1 Read " + e.getMessage());
 		}
 
 		return output;
@@ -143,7 +143,7 @@ public class CustomerDataModel {
 //		return cu1;
 //	}
 
-	public String updateUser(String ID,String NIC, String FName, String LName, String Email, String PhoneNum, String BirthDay,
+	public String updateUser(String hidPatSave, String NIC, String FName, String LName, String Email, String PhoneNum, String BirthDay,
 			String Address, String Password) {
 		
 		String output = "";
@@ -161,17 +161,18 @@ public class CustomerDataModel {
 			st.setString(6, BirthDay);
 			st.setString(7, Address);
 			st.setString(8, Password);
-			st.setInt(9, Integer.parseInt(ID));
+			st.setInt(9, Integer.parseInt(hidPatSave));
 		
 			st.executeUpdate();
 			
 			String newPatient = getCustomers();
 			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\"}";
+			System.out.println("Insert Model success Output  ::" + output);
 
 		} catch (Exception e) {
 			
 			output = "{\"status\":\"error\",\"data\": \" Error while patient Details Updating.\"}";
-			System.out.println("catch 3 " + e);
+			System.err.println("catch 4 UPDATR ::  " + e.getMessage());
 
 		}
 
@@ -197,7 +198,7 @@ public class CustomerDataModel {
 		} catch (Exception e) {
 			
 			output = "{\"status\":\"error\",\"data\": \" Error while patient Details Deleting.\"}";
-			System.out.println("catch 4 " + e);
+			System.err.println("catch 5 :: " + e.getMessage());
 
 		}
 		return output;

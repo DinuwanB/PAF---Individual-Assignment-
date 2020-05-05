@@ -16,7 +16,7 @@ public class BasicAuth implements ContainerRequestFilter {
 	
 	private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
 	private static final String AUTHORIZATION_HEADER_PERFIX = "Basic ";
-	private static final String SECURED_URL_PERFIX = "Customer";
+	private static final String SECURED_URL_PERFIX = "";
 	
 	
 	@Override

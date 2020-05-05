@@ -22,17 +22,7 @@ public class PatientAPI extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		
-		String output = item.createUser(request.getParameter("nic"), 
-				request.getParameter("f_name"), request.getParameter("l_name"), request.getParameter("pat_mail"),
-				request.getParameter("mob_num"), request.getParameter("p_bday"), request.getParameter("addr"), 
-				request.getParameter("pass"));
-		
-		response.getWriter().write(output);
-	}
+	
 	
 	private static Map getParsMap(HttpServletRequest request)
 	{
@@ -56,6 +46,23 @@ public class PatientAPI extends HttpServlet {
 		}
 		
 		return map;
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String NIC      =   request.getParameter("nic");        
+		String FNAME	=	request.getParameter("f_name");
+		String LNAME	=	request.getParameter("l_name");
+		String PATMAIL 	=	request.getParameter("pat_mail");
+		String MOBNUM 	= 	request.getParameter("mob_num");
+		String PBDAY	=	request.getParameter("p_bday");
+		String ADDR 	= 	request.getParameter("addr");
+		String PASS		=	request.getParameter("pass");
+		
+		String output = item.createUser(NIC, FNAME, LNAME, PATMAIL, MOBNUM, PBDAY, ADDR, PASS);
+		
+		System.out.println("API CALL  :  " +NIC);
+		//response.getWriter().write(output);
 	}
 
 	
