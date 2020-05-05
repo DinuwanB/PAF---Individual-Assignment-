@@ -33,7 +33,7 @@ public class CustomerDataModel {
 
 			PreparedStatement st = con.prepareStatement(sql);
 
-			st.setInt(1, 500);
+			st.setInt(1, 000);
 			st.setString(2, NIC);
 			st.setString(3, FName);
 			st.setString(4, LName);
@@ -115,33 +115,6 @@ public class CustomerDataModel {
 		return output;
 	}
 
-//	public Customer getCustomer(int id) {
-//
-//		String sqlq = "SELECT * FROM patient WHERE pat_id=" + id;
-//		Customer cu1 = new Customer();
-//		try {
-//			Statement st = con.createStatement();
-//			ResultSet rs = st.executeQuery(sqlq);
-//
-//			if (rs.next()) {
-//
-//				cu1.setCustomerId(rs.getInt(1));
-//				cu1.setNIC(rs.getString(2));
-//				cu1.setFirstname(rs.getString(3));
-//				cu1.setLastname(rs.getString(4));
-//				cu1.setEmail(rs.getString(5));
-//				cu1.setPhoneNumber(rs.getInt(6));
-//				cu1.setBirthday(rs.getString(7));
-//				cu1.setAddress(rs.getString(8));
-//				cu1.setPassword(rs.getString(9));
-//
-//			}
-//		} catch (Exception e) {
-//			System.out.println("catch 2 " + e);
-//		}
-//
-//		return cu1;
-//	}
 
 	public String updateUser(String hidPatSave, String NIC, String FName, String LName, String Email, String PhoneNum, String BirthDay,
 			String Address, String Password) {

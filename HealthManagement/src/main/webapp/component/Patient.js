@@ -20,7 +20,6 @@ $(document).on("click", "#btnSave", function(event)
 	{
 		$("#alertError").text(status);
 		$("#alertError").show();
-		console.log("what is " +status)
 		return;
 	}
 
@@ -31,12 +30,12 @@ $(document).on("click", "#btnSave", function(event)
 			{
 				url: "PatientAPI",
 				type: type,
-				data : $("pat_Form").serialize(),
-				dataType :"json",
+				data : $("#pat_Form").serialize(),
+				dataType :"text",
 				complete : function(response, status)
 				{
 					onPatientSaveComplete(response.responseText, status);
-					console.log(response)
+					console.log(response.responseText)
 					console.log("***************************************************************")
 					console.log(status)
 				}
