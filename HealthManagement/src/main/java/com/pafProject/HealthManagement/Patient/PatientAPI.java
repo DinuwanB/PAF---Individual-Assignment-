@@ -50,6 +50,8 @@ public class PatientAPI extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setContentType("application/json");
+		
 		String NIC      =   request.getParameter("nic");        
 		String FNAME	=	request.getParameter("f_name");
 		String LNAME	=	request.getParameter("l_name");
@@ -62,12 +64,12 @@ public class PatientAPI extends HttpServlet {
 		String output = item.createUser(NIC, FNAME, LNAME, PATMAIL, MOBNUM, PBDAY, ADDR, PASS);
 		
 		System.out.println("API CALL  :  " +NIC);
-		//response.getWriter().write(output);
+		response.getWriter().write(output);
 	}
 
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("application/json");
 		Map paras = getParsMap(request);
 		
 		String output = item.updateUser(paras.get("hidPatSave").toString(), paras.get("nic").toString(),
@@ -80,10 +82,12 @@ public class PatientAPI extends HttpServlet {
 
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("application/json");
 		Map paras = getParsMap(request);
 		
 		String output = item.delete(paras.get("patID").toString());
+		
+		System.out.println(output + "Delete ID");
 		
 		response.getWriter().write(output);
 		

@@ -6,7 +6,7 @@ $(document).ready(function()
 	}
 	$("#alertError").hide();
 
-		});
+});
 
 $(document).on("click", "#btnSave", function(event)
 		{ 
@@ -60,6 +60,10 @@ $(document).on("click", ".btnUpdate", function (event) {
 
 
 $(document).on("click", ".btnRemove", function (event) {
+	
+	$("#alertSuccess").text("");
+	$("#alertSuccess").hide();
+	$("#alertError").text("");
 
 	$.ajax(
 			{
