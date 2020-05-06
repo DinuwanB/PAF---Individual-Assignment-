@@ -1,3 +1,4 @@
+
 $(document).ready(function()
 		{
 	if ($("#alertSuccess").text().trim() == "")
@@ -40,6 +41,7 @@ $(document).on("click", "#btnSave", function(event)
 					console.log(status)
 				}
 			});
+	
 		});
 
 
@@ -87,19 +89,19 @@ function onPatientSaveComplete(response, status)
 
 	if (status == "success")
 	{
-		var resultSet = JSON.parse(response);
-		console.log("***********************");
-		console.log(resultSet.status.trim());
 		
-		if (resultSet.status.trim() == "success")
+		console.log("***********************");
+		
+		
+		if (status.trim() == "success")
 		{
 			$("#alertSuccess").text("Successfully saved.");
 			$("#alertSuccess").show();
 
-			$("#divItemsGrid").html(resultSet.data);
-		} else if (resultSet.status.trim() == "error")
+			$("#divItemsGrid").html(data);
+		} else if (status.trim() == "error")
 		{
-			$("#alertError").text(resultSet.data);
+			$("#alertError").text(data);
 			$("#alertError").show();
 		}
 	} else if (status == "error")
@@ -120,15 +122,15 @@ function onPatientDeleteComplete(response, status)
 {
 	if (status == "success")
 	{
-		var resultSet = JSON.parse(response);
-		if (resultSet.status.trim() == "success")
+	
+		if (status.trim() == "success")
 		{
 			$("#alertSuccess").text("Successfully deleted.");
 			$("#alertSuccess").show();
-			$("#divItemsGrid").html(resultSet.data);
-		} else if (resultSet.status.trim() == "error")
+			$("#divItemsGrid").html(data);
+		} else if (status.trim() == "error")
 		{
-			$("#alertError").text(resultSet.data);
+			$("#alertError").text(data);
 			$("#alertError").show();
 		}
 	} else if (status == "error")

@@ -26,7 +26,7 @@
 					<div class="card-header">Patient Adding Form</div>
 					<div class="card-body">
 					<div class="">
-						<form id="pat_Form" name="pat_Form" method="" action="">
+						<form id="pat_Form" name="pat_Form" method="post" action="index.jsp">
 
 							<div class="form-group col-md-6">
 								<div class="form-group ">
@@ -87,6 +87,7 @@
 
 
 			</div>
+			<br>
 		</div>
 		<div id="alertSuccess" class="alert alert-success"></div>
 		<div id="alertError" class="alert alert-danger"></div>
