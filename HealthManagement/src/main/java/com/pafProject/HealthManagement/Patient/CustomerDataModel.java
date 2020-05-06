@@ -43,7 +43,7 @@ public class CustomerDataModel {
 			st.setString(8, Address);
 			st.setString(9, Password);
 
-			st.execute();
+			st.executeUpdate();
 
 			String newPatient = getCustomers();
 			output = "{\"status\":\"success\", \"data\": \"" + newPatient + "\"}";
@@ -101,7 +101,7 @@ public class CustomerDataModel {
 				output += "<td>" + patAddr + "</td>";
 				output += "<td>" + patPass + "</td>";
 				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>";
-				output += "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-patid='"+ patID + "'></td>";
+				output += "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-patientid='"+ patID + "'>"+"</td>";
 				output += "</tr>";
 			}
 			output += "</table>";
@@ -119,6 +119,9 @@ public class CustomerDataModel {
 	public String updateUser(String hidPatSave, String NIC, String FName, String LName, String Email, String PhoneNum, String BirthDay,
 			String Address, String Password) {
 		
+		System.out.println(hidPatSave+" :::: "+NIC+" :::: "+FName+" :::: "+PhoneNum );
+		int mob = Integer.parseInt(PhoneNum);
+		System.out.println(mob);
 		String output = "";
 		
 		String sql = "UPDATE patient set pat_nic=? , FirstName=?, LastName=?, Email=?, PhoneNumber=?, Birthday=?,Address=?, Password=? WHERE pat_id=?";
@@ -130,7 +133,7 @@ public class CustomerDataModel {
 			st.setString(2, FName);
 			st.setString(3, LName);
 			st.setString(4, Email);
-			st.setInt(5, Integer.parseInt(PhoneNum));
+			st.setInt(5, mob);
 			st.setString(6, BirthDay);
 			st.setString(7, Address);
 			st.setString(8, Password);
@@ -139,7 +142,7 @@ public class CustomerDataModel {
 			st.executeUpdate();
 			
 			String newPatient = getCustomers();
-			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\"}";
+			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\",}";
 			System.out.println("Insert Model success Output  ::" + output);
 
 		} catch (Exception e) {
@@ -153,8 +156,8 @@ public class CustomerDataModel {
 
 	}
 
-	public String delete(String ID) {
-		
+	public String delete(String patID) {
+		System.out.println("Model Pass ID  " + patID);
 		String output = "";
 		
 		String sql = "DELETE FROM patient WHERE pat_id=?";
@@ -162,11 +165,11 @@ public class CustomerDataModel {
 
 			PreparedStatement st = con.prepareStatement(sql);
 
-			st.setInt(1, Integer.parseInt(ID));
+			st.setInt(1, Integer.parseInt(patID));
 			st.execute();
 			
 			String newPatient = getCustomers();
-			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\"}";
+			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\",}";
 
 		} catch (Exception e) {
 			

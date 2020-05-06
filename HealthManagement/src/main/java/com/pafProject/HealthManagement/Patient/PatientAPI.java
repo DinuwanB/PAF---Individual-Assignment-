@@ -40,14 +40,18 @@ public class PatientAPI extends HttpServlet {
 		
 		
 		response.getWriter().write(output);
+		
+		System.out.println("Hi inser response :: "+ response);
 	}
 
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		
-		CustomerDataModel item = new CustomerDataModel();
+		
 		Map paras = getParasMap(request);
+		
+		CustomerDataModel item = new CustomerDataModel();
 		System.out.println(paras + "  :: paras PUT");
 		String output = item.updateUser(paras.get("hidPatSave").toString(), paras.get("nic").toString(),
 				paras.get("f_name").toString(), paras.get("l_name").toString(), paras.get("pat_mail").toString(),
@@ -55,6 +59,8 @@ public class PatientAPI extends HttpServlet {
 				paras.get("pass").toString());
 		
 		response.getWriter().write(output);
+		
+		System.out.println("Hi updtate response :: "+ response);
 	}
 
 	
@@ -62,13 +68,15 @@ public class PatientAPI extends HttpServlet {
 		response.setContentType("application/json");
 		
 		Map paras = getParasMap(request);
+		String patID =paras.get("patID").toString();
 		CustomerDataModel item = new CustomerDataModel();
-		
-		String output = item.delete(paras.get("patID").toString());
+		String output = item.delete(patID);
 		
 		System.out.println(output + "Delete ID");
 		
 		response.getWriter().write(output);
+		
+		System.out.println("Hi delete response :: "+ response);
 		
 		
 	}
@@ -83,7 +91,7 @@ public class PatientAPI extends HttpServlet {
             String[] params = queryString.split("&");
             for (String param : params) {
                 String[] p = param.split("=");
-                map.put(p[0], p[0]);
+                map.put(p[0], p[1]);
             }
             
             System.out.println(map + "Map ***");

@@ -54,7 +54,6 @@ $(document).on("click", ".btnUpdate", function (event) {
 	$("#addr").val($(this).closest("tr").find('td:eq(6)').text());
 	$("#pass").val($(this).closest("tr").find('td:eq(7)').text());
 
-	$("#nic").show();
 });
 
 
@@ -68,7 +67,7 @@ $(document).on("click", ".btnRemove", function (event) {
 			{
 				url : "PatientAPI",
 				type: "DELETE",
-				data : "patID=" + $(this).data("patid") ,
+				data : "patID=" + $(this).data("patientid") ,
 				dataType :"text",
 				complete : function(response, status)
 				{
@@ -84,10 +83,14 @@ $(document).on("click", ".btnRemove", function (event) {
 
 function onPatientSaveComplete(response, status)
 {
+	
+
 	if (status == "success")
 	{
 		var resultSet = JSON.parse(response);
-		console.log("results "+resultSet.status.trim());
+		console.log("***********************");
+		console.log(resultSet.status.trim());
+		
 		if (resultSet.status.trim() == "success")
 		{
 			$("#alertSuccess").text("Successfully saved.");
@@ -171,7 +174,7 @@ function validatePatientForm() {
 	}
 	else if ($("#mob_num").val().length !== 10) 
 	{
-		return "Must be 10 Digits";
+		return "Phone Number Must have 10 Digits";
 	}
 
 	if($("#p_bday").val().trim() == "")
