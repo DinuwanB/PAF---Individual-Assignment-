@@ -17,15 +17,12 @@ public class PatientAPI extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
-		
-		
-		
+	
 		String NIC      =   request.getParameter("nic");        
 		String FNAME	=	request.getParameter("f_name");
 		String LNAME	=	request.getParameter("l_name");
@@ -48,6 +45,7 @@ public class PatientAPI extends HttpServlet {
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
+		
 		CustomerDataModel item = new CustomerDataModel();
 		Map paras = getParasMap(request);
 		System.out.println(paras + "  :: paras PUT");
@@ -62,6 +60,7 @@ public class PatientAPI extends HttpServlet {
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
+		
 		Map paras = getParasMap(request);
 		CustomerDataModel item = new CustomerDataModel();
 		

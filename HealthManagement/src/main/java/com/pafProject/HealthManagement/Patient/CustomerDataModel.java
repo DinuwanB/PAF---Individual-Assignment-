@@ -46,11 +46,11 @@ public class CustomerDataModel {
 			st.execute();
 
 			String newPatient = getCustomers();
-			output = "{\"status\":\"success\",\"data\": \"" + newPatient + "\"}";
+			output = "{\"status\":\"success\", \"data\": \"" + newPatient + "\"}";
 			System.out.println("Insert Model success Output  ::" + output);
 
 		} catch (Exception e) {
-			output = "{\"status\":\"error\",\"data\": \" Error while patient Details Inserting.\"}";
+			output = "{\"status\": \"error\",\"data\": \" Error while patient Details Inserting.\"}";
 			System.out.println("Insert Model Error Output  ::" + output);
 			System.err.println("catch 3 Insert " + e.getMessage());
 

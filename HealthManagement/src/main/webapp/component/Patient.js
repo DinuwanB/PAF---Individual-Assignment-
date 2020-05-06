@@ -164,9 +164,14 @@ function validatePatientForm() {
 		return "Insert Valid Email Address";
 	}
 
-	if($("#mob_num").val().trim() == "")
+	var phoneNum = $("#mob_num").val().trim();
+	if(!$.isNumeric(phoneNum))
 	{
-		return "Insert Valid Mobile Number";
+		return "Phone Number cannot Contain Letters.";
+	}
+	else if ($("#mob_num").val().length !== 10) 
+	{
+		return "Must be 10 Digits";
 	}
 
 	if($("#p_bday").val().trim() == "")
